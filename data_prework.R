@@ -15,18 +15,18 @@ sd<-read.csv2("sdriks.csv", sep=",")
 ###############################################################
 all_data<- rbind(v,c,kd,lib,miljo,m,s,sd)
 
-#ta bort alla @ och det som följer 
+#ta bort alla @ och det som f?ljer 
 #all_data$V1<- gsub("@\\w+ *","", all_data$V1)
 
 #ta bort alla hashtags 
 #all_data$V1<- gsub("#\\w+ *","", all_data$V1)
 
 
-# ta bort alla tecken som ej är bokstäver 
+# ta bort alla tecken som ej ?r bokst?ver 
 all_data$V1<-gsub("[^[:alnum:] ]", "", all_data$V1)
 
 
-#ta bort alla länkadresser 
+#ta bort alla l?nkadresser 
 
 all_data$V1<- gsub("http\\w+ *","", all_data$V1)
 
@@ -34,7 +34,7 @@ all_data$V1<- gsub("http\\w+ *","", all_data$V1)
 # ta bort alla tommar rader 
 empty_ind<- which(nchar(as.matrix(all_data[,2]))==0)
 all_data<- all_data[-empty_ind,]
-
+rm(empty_ind)
 #reset row count after removing rows 
 rownames(all_data)<-NULL
 
@@ -48,8 +48,6 @@ rm(v,c,kd,lib,miljo,m,s,sd)
 head(all_data)
 library(tm)
 library(caret)
-library(parallel)
-library(doParallel)
 ## test sample 
 set.seed(930107)
 small_data<-all_data[sample(nrow(all_data),400, replace=F),]
@@ -74,9 +72,14 @@ hm$y<-as.factor(hm$y)
 
 
 # ta bort http 
-#library(tidyverse) 
-#hm2 <- hm %>% select(-contains("http"))
+library(tidyverse) 
+hm2 <- hm %>% select(-contains("http"))
 
+
+
+######## use parallel to save time 
+library(parallel)
+library(doParallel)
 
 
 
@@ -93,7 +96,7 @@ test<- hm[-trows[[1]],]
 
 table(train$y)
 
-#bayesglm i metod kanske också 
+#bayesglm i metod kanske ocks? 
 fit <- train(y ~ ., data =train , method = 'bayesglm', trControl= fitControl)
 
 # Check accuracy on training.
@@ -101,7 +104,8 @@ preds<- predict(fit, newdata = test)
 fit
 confusionMatrix(preds, test$y)
 
+# stop the cluster, important #######
 stopCluster(cluster)
 registerDoSEQ()
-
+##############################
 
