@@ -52,28 +52,67 @@ library(caret)
 set.seed(930107)
 small_data<-all_data[sample(nrow(all_data),400, replace=F),]
 
+#parti
+Yparti <- small_data$V2
+
+# tar bort alla konstiga tecken förutom citattecken 
+small_data2<- data.frame(gsub("[[:punct:]]", "", small_data$V1))
+colnames(small_data2)<-"sm"
+
+# tar bort citattecknen 
+small_corpus<-data.frame(gsub("[^[:alnum:]///' ]", "", small_data2$sm))
+
+
+
+# ta bort alla länkar 
+s3<- as.data.frame(gsub("http\\w+ *"," ", small_corpus[,1]))
+s3_2<- as.data.frame(gsub("www\\w+ *"," ", s3[,1]))
+
+#empty rows after cleaning , char =1 av nån anledning 
+empty_ind<- which(nchar(as.character(s3_2[,1]))==1)
+
+s3_2<- data.frame(s3_2[-empty_ind,])
+Yparti<- Yparti[-empty_ind]
+
+
+
 # bara tweets 
-small_corpus<-VCorpus(VectorSource(small_data$V1))
+small_corpus<-VCorpus(VectorSource(s3_2[,1]))
 
 small_corpus<- tm_map(small_corpus, content_transformer(tolower))
 
-small_corpus<-tm_map(small_corpus, removeWords, stopwords("swedish"))
+small_corpus<-tm_map(small_corpus, removeWords, c(stopwords("swedish"), "ska"))
 
 small_corpus<-tm_map(small_corpus, stemDocument, language="swedish")
 
-tdm$dimnames
 
 tdm <- DocumentTermMatrix(small_corpus, list(removePunctuation = TRUE, removeWords, stopwords("swedish"), removeNumbers = TRUE))
+
+
+
+
+
+## för att göra predictions. 
 tmat<- as.matrix(tdm)
 hm<-as.data.frame(tmat)
-hm<- cbind(hm, small_data$V2)
+hm<- cbind(hm, Yparti)
 colnames(hm)[ncol(hm)]<-'y'
 hm$y<-as.factor(hm$y)
 
 
-# ta bort http 
-library(tidyverse) 
-hm2 <- hm %>% select(-contains("http"))
+#tf idf 
+
+tdm_tfidf<- weightTfIdf(tdm, normalize = TRUE)
+inspect(tdm_tfidf)
+
+
+
+
+
+
+
+
+
 
 
 
