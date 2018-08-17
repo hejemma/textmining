@@ -42,8 +42,7 @@ rownames(all_data)<-NULL
 #remove csvfiles from envir
 rm(v,c,kd,lib,miljo,m,s,sd)
 
-
-
+setwd("~/master2ht/text mining/projekt/textmining")
 
 head(all_data)
 library(tm)
@@ -71,6 +70,7 @@ s3_2<- as.data.frame(gsub("www\\w+ *"," ", s3[,1]))
 #empty rows after cleaning , char =1 av nån anledning 
 empty_ind<- which(nchar(as.character(s3_2[,1]))==1)
 
+#### bara om empty_ind !=0 
 s3_2<- data.frame(s3_2[-empty_ind,])
 Yparti<- Yparti[-empty_ind]
 
@@ -89,11 +89,48 @@ small_corpus<-tm_map(small_corpus, stemDocument, language="swedish")
 tdm <- DocumentTermMatrix(small_corpus, list(removePunctuation = TRUE, removeWords, stopwords("swedish"), removeNumbers = TRUE))
 
 
+################################ DTM på all data 
+
+# tar bort alla konstiga tecken förutom citattecken 
+all_data2<- data.frame(gsub("[[:punct:]]", "", all_data$V1))
+colnames(all_data2)<-"sm"
+
+# tar bort citattecknen 
+big_corpus<-data.frame(gsub("[^[:alnum:]///' ]", "", all_data2$sm))
+
+
+
+# ta bort alla länkar 
+big_corpus<- as.data.frame(gsub("http\\w+ *"," ", big_corpus[,1]))
+big_corpus<- as.data.frame(gsub("www\\w+ *"," ", big_corpus[,1]))
+
+#empty rows after cleaning , char =1 av nån anledning 
+empty_ind<- which(nchar(as.character(big_corpus[,1]))==0)
+
+#### bara om empty_ind !=0 
+s3_2<- data.frame(s3_2[-empty_ind,])
+Yparti<- Yparti[-empty_ind]
+
+
+
+# bara tweets 
+big_corpus<-VCorpus(VectorSource(big_corpus[,1]))
+
+big_corpus<- tm_map(big_corpus, content_transformer(tolower))
+
+big_corpus<-tm_map(big_corpus, removeWords, c(stopwords("swedish"), "ska"))
+
+big_corpus<-tm_map(big_corpus, stemDocument, language="swedish")
+
+
+dtm_big <- DocumentTermMatrix(big_corpus, list(removePunctuation = TRUE, removeWords, stopwords("swedish"), removeNumbers = TRUE))
+
+
 
 
 
 ## för att göra predictions. 
-tmat<- as.matrix(tdm)
+tmat<- as.matrix(tdm.new)
 hm<-as.data.frame(tmat)
 hm<- cbind(hm, Yparti)
 colnames(hm)[ncol(hm)]<-'y'
