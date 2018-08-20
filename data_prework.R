@@ -15,6 +15,12 @@ sd<-read.csv2("sdriks.csv", sep=",")
 ###############################################################
 all_data<- rbind(v,c,kd,lib,miljo,m,s,sd)
 
+#randomise rows, 
+shuffel<- all_data[sample(nrow(all_data), nrow(all_data)), ]
+rownames(shuffel)<-NULL
+all_data<-shuffel[sample(nrow(shuffel), nrow(shuffel)),]
+rownames(all_data)<-NULL
+rm(shuffel)
 #ta bort alla @ och det som f?ljer 
 #all_data$V1<- gsub("@\\w+ *","", all_data$V1)
 
@@ -98,17 +104,17 @@ colnames(all_data2)<-"sm"
 # tar bort citattecknen 
 big_corpus<-data.frame(gsub("[^[:alnum:]///' ]", "", all_data2$sm))
 
-
-
+Parti<-all_data$V2
+length(Parti)
 # ta bort alla länkar 
 big_corpus<- as.data.frame(gsub("http\\w+ *"," ", big_corpus[,1]))
 big_corpus<- as.data.frame(gsub("www\\w+ *"," ", big_corpus[,1]))
 
 #empty rows after cleaning , char =1 av nån anledning 
-empty_ind<- which(nchar(as.character(big_corpus[,1]))==0)
+empty_ind<- which(nchar(as.matrix(big_corpus[,1]))==0)
 
 #### bara om empty_ind !=0 
-s3_2<- data.frame(s3_2[-empty_ind,])
+#s3_2<- data.frame(s3_2[-empty_ind,])
 Yparti<- Yparti[-empty_ind]
 
 
@@ -118,7 +124,8 @@ big_corpus<-VCorpus(VectorSource(big_corpus[,1]))
 
 big_corpus<- tm_map(big_corpus, content_transformer(tolower))
 
-big_corpus<-tm_map(big_corpus, removeWords, c(stopwords("swedish"), "ska"))
+big_corpus<-tm_map(big_corpus, removeWords, c(stopwords("swedish"), "ska","centerpartiet","moderaterna","sverigedemokraterna",
+                                              "vänsterpartiet","socialdemokraterna","liberalerna","kristdemokraterna","miljöpartiet"))
 
 big_corpus<-tm_map(big_corpus, stemDocument, language="swedish")
 
@@ -126,13 +133,13 @@ big_corpus<-tm_map(big_corpus, stemDocument, language="swedish")
 dtm_big <- DocumentTermMatrix(big_corpus, list(removePunctuation = TRUE, removeWords, stopwords("swedish"), removeNumbers = TRUE))
 
 
-
+inspect(dtm_big)
 
 
 ## för att göra predictions. 
-tmat<- as.matrix(tdm.new)
+tmat<- as.matrix(dtm_big)
 hm<-as.data.frame(tmat)
-hm<- cbind(hm, Yparti)
+hm<- cbind(hm, Parti)
 colnames(hm)[ncol(hm)]<-'y'
 hm$y<-as.factor(hm$y)
 
