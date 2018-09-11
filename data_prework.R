@@ -1,6 +1,6 @@
 rm(list=ls())
 
-setwd("~/master2ht/text mining/projekt")
+setwd("~/master2ht/text mining/projekt/textmining/tweet_data")
 dir()
 v<- read.csv2("V.csv", sep=",")
 c<-read.csv2("Centerpartiet.csv", sep=",")
@@ -22,10 +22,10 @@ all_data<-shuffel[sample(nrow(shuffel), nrow(shuffel)),]
 rownames(all_data)<-NULL
 rm(shuffel)
 #ta bort alla @ och det som f?ljer 
-#all_data$V1<- gsub("@\\w+ *","", all_data$V1)
+all_data$V1<- gsub("@\\w+ *","", all_data$V1)
 
 #ta bort alla hashtags 
-#all_data$V1<- gsub("#\\w+ *","", all_data$V1)
+all_data$V1<- gsub("#\\w+ *","", all_data$V1)
 
 
 # ta bort alla tecken som ej ?r bokst?ver 
@@ -52,6 +52,7 @@ setwd("~/master2ht/text mining/projekt/textmining")
 
 head(all_data)
 library(tm)
+
 library(caret)
 ## test sample 
 set.seed(930107)

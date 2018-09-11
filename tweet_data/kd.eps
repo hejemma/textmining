@@ -1,0 +1,283 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%DocumentNeededResources: font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Helvetica-Oblique
+%%+ font Helvetica-BoldOblique
+%%+ font Symbol
+%%Title: R Graphics Output
+%%Creator: R Software
+%%Pages: (atend)
+%%BoundingBox: 0 0 597 404
+%%EndComments
+%%BeginProlog
+/bp  { gs sRGB gs } def
+% begin .ps.prolog
+/gs  { gsave } bind def
+/gr  { grestore } bind def
+/ep  { showpage gr gr } bind def
+/m   { moveto } bind def
+/l  { rlineto } bind def
+/np  { newpath } bind def
+/cp  { closepath } bind def
+/f   { fill } bind def
+/o   { stroke } bind def
+/c   { newpath 0 360 arc } bind def
+/r   { 4 2 roll moveto 1 copy 3 -1 roll exch 0 exch rlineto 0 rlineto -1 mul 0 exch rlineto closepath } bind def
+/p1  { stroke } bind def
+/p2  { gsave bg fill grestore newpath } bind def
+/p3  { gsave bg fill grestore stroke } bind def
+/p6  { gsave bg eofill grestore newpath } bind def
+/p7  { gsave bg eofill grestore stroke } bind def
+/t   { 5 -2 roll moveto gsave rotate
+       1 index stringwidth pop
+       mul neg 0 rmoveto show grestore } bind def
+/ta  { 4 -2 roll moveto gsave rotate show } bind def
+/tb  { 2 -1 roll 0 rmoveto show } bind def
+/cl  { grestore gsave newpath 3 index 3 index moveto 1 index
+       4 -1 roll lineto  exch 1 index lineto lineto
+       closepath clip newpath } bind def
+/rgb { setrgbcolor } bind def
+/s   { scalefont setfont } bind def
+% end   .ps.prolog
+/sRGB { [ /CIEBasedABC
+          << /DecodeLMN
+               [ { dup 0.03928 le
+                        {12.92321 div}
+                        {0.055 add 1.055 div 2.4 exp }
+                     ifelse
+                 } bind dup dup
+               ]
+             /MatrixLMN [0.412457 0.212673 0.019334
+                         0.357576 0.715152 0.119192
+                         0.180437 0.072175 0.950301]
+             /WhitePoint [0.9505 1.0 1.0890]
+           >>
+         ] setcolorspace } bind def
+/srgb { setcolor } bind def
+% begin encoding
+/WinAnsiEncoding [
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+ /space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright
+ /parenleft /parenright /asterisk /plus /comma /minus /period /slash
+ /zero /one /two /three /four /five /six /seven
+ /eight /nine /colon /semicolon /less /equal /greater /question
+ /at /A /B /C /D /E /F /G
+ /H /I /J /K /L /M /N /O
+ /P /Q /R /S /T /U /V /W
+ /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+ /grave /a /b /c /d /e /f /g
+ /h /i /j /k /l /m /n /o
+ /p /q /r /s /t /u /v /w
+ /x /y /z /braceleft /bar /braceright /asciitilde /.notdef
+ /Euro /.notdef /quotesinglbase /florin /quotedblbase /ellipsis /dagger /daggerdbl
+ /circumflex /perthousand /Scaron /guilsinglleft /OE /.notdef /Zcaron /.notdef
+ /.notdef /quoteleft /quoteright /quotedblleft /quotedblright /bullet /endash /emdash
+ /tilde /trademark /scaron /guilsinglright /oe /.notdef /zcaron /Ydieresis
+ /space /exclamdown /cent /sterling /currency /yen /brokenbar /section
+ /dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron
+ /degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /periodcentered
+ /cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown
+ /Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla
+ /Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis
+ /Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply
+ /Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls
+ /agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla
+ /egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis
+ /eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide
+ /oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis
+]
+ def
+% end encoding
+%%IncludeResource: font Helvetica
+/Helvetica findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding WinAnsiEncoding def
+  currentdict
+  end
+/Font1 exch definefont pop
+%%IncludeResource: font Helvetica-Bold
+/Helvetica-Bold findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding WinAnsiEncoding def
+  currentdict
+  end
+/Font2 exch definefont pop
+%%IncludeResource: font Helvetica-Oblique
+/Helvetica-Oblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding WinAnsiEncoding def
+  currentdict
+  end
+/Font3 exch definefont pop
+%%IncludeResource: font Helvetica-BoldOblique
+/Helvetica-BoldOblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding WinAnsiEncoding def
+  currentdict
+  end
+/Font4 exch definefont pop
+%%IncludeResource: font Symbol
+/Symbol findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  currentdict
+  end
+/Font5 exch definefont pop
+%%EndProlog
+%%Page: 1 1
+bp
+/bg { 1 1 1 srgb } def
+0.00 0.00 597.00 403.50 r p2
+0.00 0.00 597.00 403.50 cl
+/Font1 findfont 48 s
+0.0471 0.1725 0.5176 srgb
+247.84 184.88 (kdr) 0 ta
+0.720 (ik) tb gr
+/Font1 findfont 38 s
+0.1333 0.3686 0.6588 srgb
+296.28 157.87 (idag) .5 0 t
+/Font1 findfont 37 s
+0.1137 0.5686 0.7529 srgb
+325.07 220.85 (måste) .5 0 t
+236.31 257.93 (reger) 0 ta
+0.555 (ingen) tb gr
+266.71 123.60 (säger) .5 0 t
+/Font1 findfont 30 s
+0.2549 0.7137 0.7686 srgb
+334.70 143.11 (skr) 0 ta
+0.450 (iv) tb
+-0.750 (er) tb gr
+/Font1 findfont 29 s
+226.05 225.87 (mer) .5 0 t
+237.35 289.96 (jak) 0 ta
+-0.580 (obf) tb
+-0.870 (orssm) tb gr
+/Font1 findfont 28 s
+199.84 194.79 (kunna) .5 0 t
+198.73 167.39 (f) 0 ta
+-0.840 (år) tb gr
+/Font1 findfont 27 s
+235.71 256.77 (v) 90 ta
+-0.675 (ården) tb gr
+/Font1 findfont 26 s
+0.4980 0.8039 0.7333 srgb
+205.44 97.00 (behö) 0 ta
+-0.390 (v) tb
+-0.650 (er) tb gr
+348.45 170.89 (k) 0 ta
+-0.520 (ommer) tb gr
+371.36 122.07 (pldebatt) .5 0 t
+/Font1 findfont 25 s
+379.96 191.92 (lita) .5 0 t
+179.52 75.04 (v) 0 ta
+-0.625 (älf) tb
+-0.750 (ärdslöftet) tb gr
+278.31 317.52 (sjukv) 0 ta
+-0.625 (ården) tb gr
+177.55 246.58 (äldre) .5 0 t
+364.60 97.21 (fler) .5 0 t
+/Font1 findfont 24 s
+403.01 201.19 (f) 0 ta
+-0.720 (örslag) tb gr
+/Font1 findfont 22 s
+246.18 54.24 (almedalen) .5 0 t
+440.15 223.24 (kddagar) .5 0 t
+202.46 148.23 (dag) .5 90 t
+0.7804 0.9137 0.7059 srgb
+258.76 339.61 (andreascar) 0 ta
+0.330 (lson) tb gr
+/Font1 findfont 19 s
+173.38 229.38 (går) .5 0 t
+353.77 77.00 (ikv) 0 ta
+-0.475 (äll) tb gr
+/Font1 findfont 18 s
+169.65 277.52 (v) 0 ta
+-0.450 (ård) tb gr
+205.89 39.56 (ack) 0 ta
+-0.360 (oankarberg) tb gr
+218.09 150.74 (br) 0 ta
+-0.180 (a) tb gr
+326.07 97.94 (finn) .5 0 t
+336.52 58.46 (v) 0 ta
+-0.450 (älf) tb
+-0.540 (ärden) tb gr
+/Font1 findfont 17 s
+176.87 295.69 (eb) 0 ta
+-0.170 (ba) tb gr
+156.00 175.47 (också) .5 0 t
+183.42 139.40 (alliansen) .5 90 t
+416.90 99.16 (bättre) .5 0 t
+417.62 242.34 (b) 0 ta
+-0.340 (usch) tb gr
+417.48 287.35 (debatt) .5 0 t
+/Font1 findfont 16 s
+0.9294 0.9725 0.6941 srgb
+434.48 125.01 (gör) 90 ta
+-0.160 (a) tb gr
+253.78 319.69 (läs) .5 0 t
+443.17 265.19 (polisen) .5 0 t
+181.67 319.01 (r) 0 ta
+-0.160 (ätt) tb gr
+453.11 158.29 (v) 90 ta
+-0.400 (alet) tb gr
+330.86 44.98 (behö) 0 ta
+-0.240 (v) tb gr
+331.85 360.84 (fr) 0 ta
+-0.160 (ågor) tb gr
+292.16 371.27 (många) .5 0 t
+133.49 207.60 (politik) .5 0 t
+116.59 189.46 (stef) 0 ta
+-0.480 (an) tb gr
+149.39 161.34 (thor) .5 0 t
+/Font1 findfont 15 s
+144.04 135.86 (dagen) .5 0 t
+210.58 355.03 (sofiadammkd) .5 0 t
+218.58 22.00 (v) 0 ta
+-0.375 (årdk) tb
+-0.300 (öer) tb
+0.375 (na) tb gr
+331.79 23.35 (v) 0 ta
+-0.375 (älf) tb
+-0.450 (ärdssv) tb
+-0.375 (ek) tb
+-0.300 (et) tb gr
+138.71 119.84 (bar) 0 ta
+0.375 (n) tb gr
+137.25 231.50 (hela) .5 0 t
+174.36 333.01 (inf) 0 ta
+-0.450 (ör) tb gr
+448.74 130.44 (sitt) .5 0 t
+252.13 169.17 (tid) .5 0 t
+422.95 301.17 (via) .5 0 t
+420.32 80.99 (just) .5 0 t
+444.87 279.42 (kr) 0 ta
+-0.150 (ä) tb
+-0.300 (vs) tb gr
+168.34 372.61 (människ) 0 ta
+-0.300 (or) tb gr
+/Font1 findfont 14 s
+193.70 266.88 (hos) .5 0 t
+470.37 169.23 (reger) .5 90 t
+386.03 44.90 (sjukv) 0 ta
+-0.350 (ård) tb gr
+345.66 377.26 (v) 0 ta
+-0.350 (ärder) tb
+0.210 (ingar) tb gr
+446.20 318.66 (ladaktusson) .5 0 t
+157.00 314.44 (polis) .5 0 t
+134.83 258.80 (sv) 90 ta
+-0.350 (ensk) tb gr
+150.30 149.21 (v) 0 ta
+-0.350 (al) tb gr
+146.10 99.41 (utsatta) .5 0 t
+ep
+%%Trailer
+%%Pages: 1
+%%EOF

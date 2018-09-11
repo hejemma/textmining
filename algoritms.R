@@ -1,4 +1,4 @@
-
+library(caret)
 ######## use parallel to save time 
 library(parallel)
 library(doParallel)
@@ -122,8 +122,11 @@ for (i in topics){
   perplexity_df[i,2]  <- perplexity(fitted, newdata = tdm_test_ls) 
 }
 
+#
 
-
+ldamod<- LDA(less_sparse, k = 3, method="Gibbs", control=list(burnin = 100, iter= 1000, keep= 50))
+posterior(ldamod, less_sparse[1:10,])
+terms(ldamod, 20)
 ##plotting the perplexity of both train and test
 
 g <- ggplot(data=perplexity_df, aes(x= as.numeric(row.names(perplexity_df)))) + labs(y="Perplexity",x="Number of topics") + ggtitle("Perplexity of hold out  and training data")
